@@ -1,6 +1,7 @@
 package logica;
 
 public class Vehiculo {
+	public String id;
 	public String categoria;
 	public String estado;
 	public String ubicacion;
@@ -10,9 +11,11 @@ public class Vehiculo {
 	public String color;
 	public String tipodeTransmision;
 	public int capacidaddePersonas;
-	public Vehiculo(String categoria, String estado, String ubicacion, String placa, String marca, String modelo,
-			String color, String tipodeTransmision, int capacidaddePersonas) {
+	public String sede;
+	public Vehiculo(String id,String categoria, String estado, String ubicacion, String placa, String marca, String modelo,
+			String color, String tipodeTransmision, int capacidaddePersonas, String sede) {
 		super();
+		this.id = id;
 		this.categoria = categoria;
 		this.estado = estado;
 		this.ubicacion = ubicacion;
@@ -22,6 +25,10 @@ public class Vehiculo {
 		this.color = color;
 		this.tipodeTransmision = tipodeTransmision;
 		this.capacidaddePersonas = capacidaddePersonas;
+		this.sede = sede;
+	}
+	public String getId() {
+		return id;
 	}
 	public String getCategoria() {
 		return categoria;
@@ -49,6 +56,12 @@ public class Vehiculo {
 	}
 	public int getCapacidaddePersonas() {
 		return capacidaddePersonas;
+	}
+	public String getSede() {
+		return sede;
+	}
+	public void setEstado(String sede ) {
+		this.sede = sede;
 	}
 	
 

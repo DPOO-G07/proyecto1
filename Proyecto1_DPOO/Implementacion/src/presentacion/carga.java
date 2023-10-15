@@ -1,29 +1,84 @@
 package presentacion;
 
 import java.io.BufferedReader;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
+import Modelo.Rentadora;
 import logica.Cliente;
 import logica.Empleado;
 import logica.Persona;
 import logica.Reserva;
 import logica.Sede;
+import logica.Vehiculo;
+
 
 import java.io.FileReader;
 
 
 
 public class carga {
-	public static Principal Leer(String archivo, String archivo2, String archivo3) {
+	public static Rentadora Leer(String personas, String sede, String reservas, String vehiculos) {
 		try {
 
 			Map <String, Persona> Personas = new HashMap<>();
-			Map <String, Sede> Menu = new HashMap<>();
-			Map <String, Reserva> Ingredientes = new HashMap<>();
-			BufferedReader br = new BufferedReader(new FileReader(archivo));
+			Map <String, Sede> Sedes = new HashMap<>();
+			Map <Double, Reserva> Reservas = new HashMap<>();
+			Map <String, Vehiculo> Vehiculos = new HashMap<>();
+			
+			
+			BufferedReader br1 = new BufferedReader(new FileReader(sede));
+			String linea1;
+			while((linea1=br1.readLine()) != null) {
+				String [] partes = linea1.split(";");
+				
+				
+				String nombre = partes[0];
+				String ubicacion = partes[1];
+				String horariosdeAtencion = partes[2];
+				String administradordeSede = partes[3];
+				Map<String, Empleado> empleadosSede = new HashMap<>();
+				ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+				
+				
+				
+				Sede lasede = new Sede(nombre, ubicacion, horariosdeAtencion,administradordeSede, empleadosSede, listaVehiculos);
+				Sedes.put(nombre, lasede);
+			}
+			br1.close();
+			BufferedReader br3 = new BufferedReader(new FileReader(vehiculos));
+			String linea3;
+			while((linea3=br3.readLine()) != null) {
+				String [] partes = linea3.split(";");
+				String id = partes[0];
+				
+				String lacategoria = partes[1];
+				String elestado = partes[2];
+				String laubicacion = (partes[3]);
+				String laplaca = partes[4];
+				String lamarca = partes[5];
+				String elmodelo = partes[6];
+				String elcolor = partes[7];
+				String eltipodeTransmision = partes[8];
+				Integer elnumpersonas = Integer.parseInt(partes[9]);
+				String lasede = partes[10];
+				Vehiculo elvehiculo = new Vehiculo(id, lacategoria, elestado, laubicacion, laplaca, lamarca, elmodelo, elcolor, eltipodeTransmision, elnumpersonas, lasede);
+				Sede lugar = Sedes.get(lasede);
+				lugar.agregarVehiculo(id, elvehiculo);
+				Sedes.put(lasede, lugar);
+				
+				
+				
+				
+				
+				
+				
+			}
+			br3.close();
+			
+			BufferedReader br = new BufferedReader(new FileReader(personas));
 			String linea;
 			while((linea=br.readLine()) != null) {
 				String [] partes = linea.split(";");
@@ -38,39 +93,45 @@ public class carga {
 				String ellogin = partes[7];
 				String lapassword = partes[8];
 				
-				if (elcargo == "cliente") {
+				
+				if (elcargo == "Cliente") {
 					Persona lapersona = new Cliente(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword);
-					Personas.put(elnombre, lapersona);
+					Personas.put(ellogin, lapersona);
 					}
 				else {
-					Persona lapersona = new Empleado(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword);
-					Personas.put(elnombre, lapersona);
+					String nomsede = partes[9];
+					
+					Persona lapersona = new Empleado(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword, nomsede);
+					Personas.put(ellogin, lapersona);
+					Sede ladepersona =  Sedes.get(nomsede);
+					ladepersona.agregarEmpleado(elnombre, (Empleado) lapersona);
+					
+					
 					
 				}
 				
 				
 			}
 			br.close();
-			BufferedReader br1 = new BufferedReader(new FileReader(archivo2));
-			String linea1;
-			while((linea1=br1.readLine()) != null) {
-				String [] partes = linea1.split(";");
 			
-				String nombre = partes[0];
-				Double precio = Double.parseDouble(partes[1]);
-				Menu elmenu = new Menu(nombre, precio);
-				Menu.put(nombre, elmenu);
-			}
-			br1.close();
-			BufferedReader br2 = new BufferedReader(new FileReader(archivo3));
+			BufferedReader br2 = new BufferedReader(new FileReader(reservas));
 			String linea2;
 			while((linea2=br2.readLine()) != null) {
 				String [] partes = linea2.split(";");
 			
-				String nombre = partes[0];
-				Double precio = Double.parseDouble(partes[1]);
-				Ingredientes elingrediente = new Ingredientes (nombre, precio);
-				Ingredientes.put(nombre, elingrediente);
+				Double numeroReserva = Double.parseDouble(partes[0]);
+				String tipodeVehiculo = partes[1];
+				String cualSede = partes[2];
+				String fechadeRecoleccion = partes[3];
+				String horadeRecoleccion= partes[4];
+				String fechadeEntrega = partes[5];
+				String horadeEntrega = partes[6];
+				Double cobro = Double.parseDouble(partes[7]);
+				String nomcliente  = partes[8];
+				String estado = partes[9];
+				
+				Reserva lareserva = new Reserva (numeroReserva,tipodeVehiculo, cualSede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nomcliente, estado);
+				Reservas.put(numeroReserva, lareserva);
 			}
 			br2.close();
 		
@@ -78,8 +139,9 @@ public class carga {
 		
 			
 		
-			Restaurante res = new Restaurante(Combos, Menu, Ingredientes, pedido);
-			return res;
+			Rentadora ren = new Rentadora(Personas, Sedes, Reservas);
+			
+			return ren;
 
 
 

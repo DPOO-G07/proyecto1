@@ -24,59 +24,31 @@ public abstract class Persona {
 		this.password = password;
 		this.cargo = cargo;
 	}
-	public String getNombre() {
-		return nombre;
-	}
+	public abstract String getNombre();
+	
+	
+
+	
+	public abstract double getCedula();
+	
+	public abstract void setCedula(Double cedula) ;
+	public abstract String getFechadeNacimiento();
+	public abstract void setFechadeNacimiento(String fechadenacimiento);
+	public abstract String getNacionalidad();
+	public abstract void setNacionalidad(String nacionalidad);
+	public abstract String getEmail();
+	public abstract void setEmail(String mail);
+	public abstract double getCelular();
+	public abstract void setCelular(Double celular);
+	public abstract String getLogin();
+	public abstract void setLogin(String login);
+	public abstract String getPassword();
+	public abstract void setPassword(String password);
+	public abstract String getCargo();
+	public abstract void setCargo(String cargo);
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public double getCedula() {
-		return cedula;
-	}
-	public void setCedula(double cedula) {
-		this.cedula = cedula;
-	}
-	public String getFechadeNacimiento() {
-		return fechadeNacimiento;
-	}
-	public void setFechadeNacimiento(String fechadeNacimiento) {
-		this.fechadeNacimiento = fechadeNacimiento;
-	}
-	public String getNacionalidad() {
-		return nacionalidad;
-	}
-	public void setNacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public double getCelular() {
-		return celular;
-	}
-	public void setCelular(double celular) {
-		this.celular = celular;
-	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getCargo() {
-		return cargo;
-	}
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
