@@ -12,7 +12,11 @@ import logica.Persona;
 
 public class Principal {
 	private Rentadora ren;
-	
+	public static void main(String[]args) throws IOException {
+		Principal principal = new Principal();
+		principal.ejecutarAplicacion();
+	}
+		
 	public void ejecutarAplicacion() throws IOException
 	{
 		System.out.println("Rentadora de carros \n");
