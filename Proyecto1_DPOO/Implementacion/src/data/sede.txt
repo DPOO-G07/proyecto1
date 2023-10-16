@@ -1,0 +1,3 @@
+motorsPalmas;palmas 85#45b;8AM-5PM;tomas diaz;tomas diaz,tomas ostos,samara;vehiculo1,vehiculo2, Vehiculo3
+motorsCañas;cañas 19#2a;8AM-5PM;tomas ostos;tomas diaz,tomas ostos,samara;vehiculo4,vehiculo5 Vehiculo6
+motorsFlora;flora 120#3c;8AM-5PM;samara;tomas diaz,tomas ostos,samara;vehiculo7,vehiculo8, Vehiculo9

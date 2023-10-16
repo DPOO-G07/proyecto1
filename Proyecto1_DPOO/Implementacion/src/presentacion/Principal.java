@@ -101,8 +101,11 @@ public class Principal {
 		else if (opcion_seleccionada ==3){
 			String nomcliente = (input("Ingrese el user del cliente"));
 			Persona cliente = ren.devolverCliente(nomcliente);
-			String nombre = (input("Que desea saber del cliente? "));
-			//continuar
+			
+			SolicitarInformacionCliente(cliente);
+			
+			
+			
 		}
 		else if (opcion_seleccionada ==4){
 			Inscripcion("Empleado");
@@ -121,6 +124,12 @@ public class Principal {
 			else if (opcion_seleccionada2 == 2){
 				
 			}
+			else {
+				System.out.println("Seleccione una opcion valida");
+			}
+		}
+		else {
+			System.out.println("Seleccione una opcion valida");
 		}
 		
 	}
@@ -135,6 +144,42 @@ public class Principal {
 		System.out.println("8. Desea gestionar los convenios con los seguros?  \n");
 		System.out.println("9. Desea gestionar una sede?  \n");
 		System.out.println("10. Desea gestionar un proveedor?  \n");
+	}
+	private void SolicitarInformacionCliente(Persona cliente) {
+		System.out.println("1. Desea saber su nombre");
+		System.out.println("2. Desea saber su cedula");
+		System.out.println("3. Desea saber su fecha de nacimiento ");
+		System.out.println("4. Desea saber su nacionalidad");
+		System.out.println("5. Desea saber su email");
+		System.out.println("6. Desea saber su numero");
+		System.out.println("7. Desea saber su login");
+		Integer opcion = Integer.parseInt(input("Que desea saber del cliente? "));
+		if (opcion == 1) {
+			System.out.println(cliente.getNombre());
+			
+		}
+		else if (opcion == 2) {
+			System.out.println(cliente.getCedula());
+			
+		}
+		else if (opcion == 3) {
+			System.out.println(cliente.getFechadeNacimiento());
+		}
+		else if (opcion == 4) {
+			System.out.println(cliente.getNacionalidad());
+		}
+		else if (opcion == 5) {
+			System.out.println(cliente.getEmail());
+		}
+		else if (opcion == 6) {
+			System.out.println(cliente.getCelular());
+		}
+		else if (opcion == 7) {
+			System.out.println(cliente.getLogin());
+		}
+		else {
+			System.out.println("Seleccione una opcion valida");
+		}
 	}
 	public String input(String mensaje)
 	{

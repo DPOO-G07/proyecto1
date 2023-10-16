@@ -11,9 +11,9 @@ public class Sede {
 	public String horariosdeAtencion;
 	public String administradordeSede;
 	Map <String, Empleado> empleadosSede;
-	Map <String, Vehiculo> listaVehiculos;
+	Map <Integer,Vehiculo> listaVehiculos;
 	
-	public Sede(String nombre, String ubicacion, String horariosdeAtencion, String administradordeSede, Map <String, Empleado> empleadosSede, ArrayList<Vehiculo> listaVehiculo) {
+	public Sede(String nombre, String ubicacion, String horariosdeAtencion, String administradordeSede, Map <String, Empleado> empleadosSede, Map<Integer, Vehiculo> listaVehiculos) {
 		super();
 		this.nombre = nombre;
 		this.ubicacion = ubicacion;
@@ -54,14 +54,14 @@ public class Sede {
 		empleadosSede.put(nombreempleado, elempleado);
 		
 	}
-	public Collection<Vehiculo> getListavehiculos(){
-		return this.listaVehiculos.values();
+	public ArrayList<Vehiculo> getListavehiculos(){
+		return new ArrayList<Vehiculo>(listaVehiculos.values());
 	}
-	public void agregarVehiculo(String id, Vehiculo elvehiculo) {
+	public void agregarVehiculo(Integer id, Vehiculo elvehiculo) {
 		listaVehiculos.put(id, elvehiculo);
 	}
 
-	public void setListavehiculos( Map<String, Vehiculo> listaVehiculos) {
+	public void setListavehiculos(Map<Integer, Vehiculo> listaVehiculos) {
 		this.listaVehiculos = listaVehiculos;
 	}
 

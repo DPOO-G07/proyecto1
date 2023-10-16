@@ -26,7 +26,7 @@ public class carga {
 			Map <String, Persona> Personas = new HashMap<>();
 			Map <String, Sede> Sedes = new HashMap<>();
 			Map <Double, Reserva> Reservas = new HashMap<>();
-			Map <String, Vehiculo> Vehiculos = new HashMap<>();
+			Map <Integer, Vehiculo> Vehiculos = new HashMap<>();
 			
 			
 			BufferedReader br1 = new BufferedReader(new FileReader(sede));
@@ -40,7 +40,7 @@ public class carga {
 				String horariosdeAtencion = partes[2];
 				String administradordeSede = partes[3];
 				Map<String, Empleado> empleadosSede = new HashMap<>();
-				ArrayList<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
+				Map<Integer,Vehiculo> listaVehiculos = new HashMap<>();
 				
 				
 				
@@ -52,7 +52,7 @@ public class carga {
 			String linea3;
 			while((linea3=br3.readLine()) != null) {
 				String [] partes = linea3.split(";");
-				String id = partes[0];
+				Integer id = Integer.parseInt(partes[0]);
 				
 				String lacategoria = partes[1];
 				String elestado = partes[2];
@@ -68,6 +68,7 @@ public class carga {
 				Sede lugar = Sedes.get(lasede);
 				lugar.agregarVehiculo(id, elvehiculo);
 				Sedes.put(lasede, lugar);
+				Vehiculos.put(id, elvehiculo);
 				
 				
 				
@@ -139,7 +140,7 @@ public class carga {
 		
 			
 		
-			Rentadora ren = new Rentadora(Personas, Sedes, Reservas);
+			Rentadora ren = new Rentadora(Personas, Sedes, Reservas, Vehiculos);
 			
 			return ren;
 

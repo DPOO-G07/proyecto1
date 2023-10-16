@@ -19,11 +19,13 @@ public class Rentadora {
 	
 	private Map <String, Sede> Sedes;
 	private Map <Double, Reserva> Reservas;
+	private Map <Integer, Vehiculo> Vehiculos;
 
-	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas) {
+	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
 		this.Personas = new HashMap <String, Persona>();
 		this.Sedes = new HashMap <String, Sede>();
 		this.Reservas = new HashMap <Double, Reserva>();
+		this.Vehiculos = new HashMap<Integer,Vehiculo>();
 		
 		
 		
@@ -41,6 +43,10 @@ public class Rentadora {
 		
 		return Reservas;
 	}
+	public Map<Integer, Vehiculo> darVehiculos() {
+		
+		return Vehiculos;
+	}
 	public String verificarIdentidad(String usuario, String Password) {
 		Persona lapersona =  Personas.get(usuario);
 		String contraseña = lapersona.getPassword();
@@ -55,20 +61,20 @@ public class Rentadora {
 		
 		
 	}
-	public Collection<Empleado> devolverEmpleados(String user){
+	public ArrayList<Empleado> devolverEmpleados(String user){
 		Empleado elempleado = (Empleado) Personas.get(user);
 		String nomsede = elempleado.getNomsede();
 		Sede lasede = Sedes.get(nomsede);
-		Collection<Empleado> lista = lasede.getListaempleados().values();
+		ArrayList<Empleado> lista = new ArrayList<Empleado>(lasede.getListaempleados().values());
 		
 		return lista;
 		
 	}
-	public Collection<Vehiculo> devolverVehiculos(String user){
+	public ArrayList<Vehiculo> devolverVehiculos(String user){
 		Empleado elempleado = (Empleado) Personas.get(user);
 		String nomsede = elempleado.getNomsede();
 		Sede lasede = Sedes.get(nomsede);
-		Collection<Vehiculo> lista = lasede.getListavehiculos();
+		ArrayList<Vehiculo> lista = new ArrayList<Vehiculo>(lasede.getListavehiculos());
 		
 		return lista;
 		
