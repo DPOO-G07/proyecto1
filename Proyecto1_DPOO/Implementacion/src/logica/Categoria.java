@@ -1,18 +1,19 @@
 package logica;
 
-import java.util.Collection;
-import java.util.Map;
+import java.util.ArrayList;
+
 
 public class Categoria {
 	public double iddeCategoria;
 	public double tarifaporDia;
 	public String temporada;
-	Map <String, Vehiculo> listaVehiculos;
-	public Categoria(double iddeCategoria, double tarifaporDia, String temporada) {
+	public static ArrayList<Vehiculo> listaVehiculos;
+	public Categoria(double iddeCategoria, double tarifaporDia, String temporada, ArrayList<Vehiculo> listaVehiculos) {
 		super();
 		this.iddeCategoria = iddeCategoria;
 		this.tarifaporDia = tarifaporDia;
 		this.temporada = temporada;
+		Categoria.listaVehiculos = listaVehiculos;
 	}
 	public double getIddeCategoria() {
 		return iddeCategoria;
@@ -23,14 +24,11 @@ public class Categoria {
 	public String getTemporada() {
 		return temporada;
 	}
-	public Collection<Vehiculo> getListavehiculos(){
-		return this.listaVehiculos.values();
+		public void agregarVehiculo(String id, Vehiculo elvehiculo) {
+		listaVehiculos.add(elvehiculo);
 	}
-	public void agregarVehiculo(String id, Vehiculo elvehiculo) {
-		listaVehiculos.put(id, elvehiculo);
-	}
-	public void setListavehiculos( Map<String, Vehiculo> listaVehiculos) {
-		this.listaVehiculos = listaVehiculos;
+	public void setListavehiculos( ArrayList<Vehiculo> listaVehiculos) {
+		Categoria.listaVehiculos = listaVehiculos;
 	}
 
 }
