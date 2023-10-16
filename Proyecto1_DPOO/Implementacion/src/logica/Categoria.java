@@ -24,8 +24,8 @@ public class Categoria {
 	public String getTemporada() {
 		return temporada;
 	}
-		public void agregarVehiculo(String id, Vehiculo elvehiculo) {
-		listaVehiculos.add(elvehiculo);
+	public void agregarVehiculo(String id, Vehiculo elvehiculo) {
+	listaVehiculos.add(elvehiculo);
 	}
 	public void setListavehiculos( ArrayList<Vehiculo> listaVehiculos) {
 		Categoria.listaVehiculos = listaVehiculos;
