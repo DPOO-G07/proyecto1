@@ -96,16 +96,16 @@ public class carga {
 				
 				
 				if (elcargo == "Cliente") {
-					Persona lapersona = new Cliente(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword);
+					Cliente lapersona = new Cliente(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword);
 					Personas.put(ellogin, lapersona);
 					}
 				else {
 					String nomsede = partes[9];
 					
-					Persona lapersona = new Empleado(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword, nomsede);
+					Empleado lapersona = new Empleado(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword, nomsede);
 					Personas.put(ellogin, lapersona);
 					Sede ladepersona =  Sedes.get(nomsede);
-					ladepersona.agregarEmpleado(elnombre, (Empleado) lapersona);
+					ladepersona.agregarEmpleado(elnombre, lapersona);
 					
 					
 					

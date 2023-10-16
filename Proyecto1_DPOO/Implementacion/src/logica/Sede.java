@@ -54,6 +54,11 @@ public class Sede {
 		empleadosSede.put(nombreempleado, elempleado);
 		
 	}
+	public Map<Integer, Vehiculo> getMapaVehiculos(){
+		
+		return listaVehiculos;
+		
+	}
 	public ArrayList<Vehiculo> getListavehiculos(){
 		return new ArrayList<Vehiculo>(listaVehiculos.values());
 	}

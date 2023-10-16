@@ -114,15 +114,19 @@ public class Principal {
 			Inscripcion("Cliente");
 		}
 		else if (opcion_seleccionada ==6){
-			String idCarro = (input("Que carro esta buscando, ingrese el Id porfavor"));
+			Integer idCarro = Integer.parseInt(input("Que carro esta buscando, ingrese el Id porfavor"));
 			System.out.println("1. Desea actualizar su estado?  \n");
 			System.out.println("2. Desea cambiarlo de sede para disponibilidad? \n");
 			int opcion_seleccionada2 = Integer.parseInt(input("Por favor seleccione una opción"));
 			if (opcion_seleccionada2 == 1) {
-				
+				String estado = (input("Que carro esta buscando, ingrese el Id porfavor"));
+				ren.actualizarEstadoVehiculo(idCarro,estado);
+				System.out.println("Listo, el estado del vehiculo esta actualizado ");
 			}
 			else if (opcion_seleccionada2 == 2){
-				
+				String sede = (input("A que sede desea transladar el carro?"));
+				ren.cambiarVehiculoSede(idCarro, sede);
+				System.out.println("Listo, el translado fue hecho con exito ");
 			}
 			else {
 				System.out.println("Seleccione una opcion valida");

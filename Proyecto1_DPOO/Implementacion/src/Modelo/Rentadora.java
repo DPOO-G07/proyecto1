@@ -87,4 +87,45 @@ public class Rentadora {
 		Persona lapersona = new Cliente(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password);
 		Personas.put(login, lapersona);
 	}
+	public void actualizarEstadoVehiculo(Integer id, String estado) {
+		Vehiculo elcarro = Vehiculos.get(id);
+		elcarro.setEstado(estado);
+		Vehiculos.put(id, elcarro);
+	}
+	
+	public void cambiarVehiculoSede(Integer id, String sede) {
+		Vehiculo elcarro = Vehiculos.get(id);
+		String antiguaSede = elcarro.getSede();
+		Sede viejaSede = Sedes.get(elcarro.getSede());
+		Map<Integer, Vehiculo> mapavehiculosviejo = viejaSede.getMapaVehiculos();
+		viejaSede.setListavehiculos(mapavehiculosviejo);
+		Sedes.put(antiguaSede, viejaSede);
+		//actualizar antigua sede, quitar vehiculo//
+		
+		
+		elcarro.setSede(sede);
+		
+		Vehiculos.put(id, elcarro);
+		Sede lasede = Sedes.get(sede);
+		Map<Integer, Vehiculo> mapavehiculos = lasede.getMapaVehiculos();
+		lasede.setListavehiculos(mapavehiculos);
+		Sedes.put(sede, lasede);
+		
+		
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
