@@ -10,12 +10,10 @@ import logica.Persona;
 
 
 
+
 public class Principal {
 	private Rentadora ren;
-	public static void main(String[]args) throws IOException {
-		Principal principal = new Principal();
-		principal.ejecutarAplicacion();
-	}
+	
 		
 	public void ejecutarAplicacion() throws IOException
 	{
@@ -27,17 +25,17 @@ public class Principal {
 			String contraseña = (input("Por favor ingrese su contraseña"));
 			String cargo = ren.verificarIdentidad(user, contraseña);
 			
-			if (cargo == "Administrador Local") {
+			if (cargo.equalsIgnoreCase("Administrador Local")) {
 				Menuadministradorlocal (user);
 			}
-			else if (cargo == "Administrador General") {
+			else if (cargo.equalsIgnoreCase("Administrador General")) {
 				Menuadministrador(user);
 				
 			}
-			else if (cargo == "Empleado") {
+			else if (cargo.equalsIgnoreCase("Empleado")) {
 				
 			}
-			else if( cargo == "Cliente") {
+			else if( cargo.equalsIgnoreCase("Cliente")) {
 				
 			}
 			else {
@@ -63,6 +61,8 @@ public class Principal {
 		
 	private void Inicializaraplicacion() {
 		ren = carga.Leer("Proyecto1_DPOO/Implementacion/data/personas.txt", "Proyecto1_DPOO/Implementacion/data/sede.txt", "Proyecto1_DPOO/Implementacion/data/reserva.txt", "Proyecto1_DPOO/Implementacion/data/vehiculos.txt");
+		
+		
 		System.out.println("Se inicio la app");
 	}
 	
@@ -262,6 +262,11 @@ public class Principal {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public static void main(String[] args) throws IOException
+	{
+		Principal consola = new Principal();
+		consola.ejecutarAplicacion();
 	}
 
 }

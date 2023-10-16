@@ -24,14 +24,14 @@ public class Rentadora {
 	private Map <String, Sede> Sedes;
 	private Map <Double, Reserva> Reservas;
 	private Map <Integer, Vehiculo> Vehiculos;
-	private Tarifa tarifa;
+	
 	
 
 	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
-		this.Personas = new HashMap <String, Persona>();
-		this.Sedes = new HashMap <String, Sede>();
-		this.Reservas = new HashMap <Double, Reserva>();
-		this.Vehiculos = new HashMap<Integer,Vehiculo>();
+		this.Personas = Personas;
+		this.Sedes = Sedes;
+		this.Reservas = Reservas;
+		this.Vehiculos = Vehiculos;
 		
 		
 		
@@ -57,7 +57,7 @@ public class Rentadora {
 		Persona lapersona =  Personas.get(usuario);
 		String contraseña = lapersona.getPassword();
 		String cargo = lapersona.getCargo();
-		if (contraseña == Password) {
+		if (contraseña.equals(Password)) {
 			return cargo;
 		}
 		else 
