@@ -1,8 +1,11 @@
 package Modelo;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +14,7 @@ import logica.Empleado;
 import logica.Persona;
 import logica.Reserva;
 import logica.Sede;
+import logica.Tarifa;
 import logica.Vehiculo;
 
 
@@ -20,6 +24,8 @@ public class Rentadora {
 	private Map <String, Sede> Sedes;
 	private Map <Double, Reserva> Reservas;
 	private Map <Integer, Vehiculo> Vehiculos;
+	private Tarifa tarifa;
+	
 
 	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
 		this.Personas = new HashMap <String, Persona>();
@@ -84,8 +90,18 @@ public class Rentadora {
 	}
 	public void agregarPersona (String cargo,String nombre, double cedula, String fechadeNacimiento, String nacionalidad, String email,
 			double celular, String login, String password) {
-		Persona lapersona = new Cliente(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password);
-		Personas.put(login, lapersona);
+		if (cargo.equalsIgnoreCase("Cliente")){
+			Double licencia = Double.parseDouble(input("Por favor ingrese su licencia"));
+			Double metododepago = Double.parseDouble(input("Por favor ingrese su metodo de pago"));
+			Persona lapersona = new Cliente(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password, licencia,metododepago);
+			Personas.put(login, lapersona);
+	}
+		else {
+			String nomsede = (input("Por favor ingrese su licencia"));
+			Persona lapersona = new Empleado(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password,nomsede);
+			Personas.put(login, lapersona);
+		}
+		
 	}
 	public void actualizarEstadoVehiculo(Integer id, String estado) {
 		Vehiculo elcarro = Vehiculos.get(id);
@@ -112,6 +128,21 @@ public class Rentadora {
 		Sedes.put(sede, lasede);
 		
 		
+	}
+	public String input(String mensaje)
+	{
+		try
+		{
+			System.out.print(mensaje + ": ");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			return reader.readLine();
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error leyendo de la consola");
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
 

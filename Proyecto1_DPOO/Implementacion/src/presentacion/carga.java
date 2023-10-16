@@ -1,7 +1,7 @@
 package presentacion;
 
 import java.io.BufferedReader;
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import java.util.Map;
@@ -95,19 +95,26 @@ public class carga {
 				String lapassword = partes[8];
 				
 				
-				if (elcargo == "Cliente") {
-					Cliente lapersona = new Cliente(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword);
+				if (elcargo.equalsIgnoreCase( "Cliente")) {
+					double licencia = Double.parseDouble(partes[9]);
+					double metododepago = Double.parseDouble(partes[10]);
+					Cliente lapersona = new Cliente(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword, licencia, metododepago);
 					Personas.put(ellogin, lapersona);
 					}
+				
 				else {
 					String nomsede = partes[9];
+					if (nomsede.equalsIgnoreCase("general")) {
+						Empleado lapersona = new Empleado(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword, nomsede);
+						Personas.put(ellogin, lapersona);
+					}
+					else {
+						Empleado lapersona = new Empleado(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword, nomsede);
+						Personas.put(ellogin, lapersona);
+						Sede ladepersona =  Sedes.get(nomsede);
+						ladepersona.agregarEmpleado(elnombre, lapersona);
 					
-					Empleado lapersona = new Empleado(elcargo, elnombre, lacedula, lafechadeNacimiento, lanacionalidad, elemail, elcelular, ellogin, lapassword, nomsede);
-					Personas.put(ellogin, lapersona);
-					Sede ladepersona =  Sedes.get(nomsede);
-					ladepersona.agregarEmpleado(elnombre, lapersona);
-					
-					
+					}
 					
 				}
 				
