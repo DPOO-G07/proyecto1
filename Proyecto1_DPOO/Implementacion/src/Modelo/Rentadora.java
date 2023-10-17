@@ -86,6 +86,17 @@ public class Rentadora {
 		
 		
 	}
+	public void devolverEmpleadosadmin(String sede){
+		
+		Sede lasede = Sedes.get(sede);
+		ArrayList<Empleado> lista = new ArrayList<Empleado>(lasede.getListaempleados().values());
+		for (Empleado elemp : lista) {
+			System.out.println(elemp.getNombre());
+		}
+		
+		
+		
+	}
 	public void devolverEmpleados(String user){
 		Empleado elempleado = (Empleado) Personas.get(user);
 		String nomsede = elempleado.getNomsede();
@@ -98,13 +109,24 @@ public class Rentadora {
 		
 		
 	}
-	public ArrayList<Vehiculo> devolverVehiculos(String user){
+	public void devolverVehiculosadmin(String nomsede){
+		
+		Sede lasede = Sedes.get(nomsede);
+		ArrayList<Vehiculo> lista = new ArrayList<Vehiculo>(lasede.getListavehiculos());
+		for (Vehiculo elvehi : lista) {
+			System.out.println(elvehi.getPlaca());
+		}
+	
+		
+	}
+	public void devolverVehiculos(String user){
 		Empleado elempleado = (Empleado) Personas.get(user);
 		String nomsede = elempleado.getNomsede();
 		Sede lasede = Sedes.get(nomsede);
 		ArrayList<Vehiculo> lista = new ArrayList<Vehiculo>(lasede.getListavehiculos());
-		
-		return lista;
+		for (Vehiculo elvehi : lista) {
+			System.out.println(elvehi.getPlaca());
+		}
 		
 	}
 	public Persona devolverCliente(String user) {

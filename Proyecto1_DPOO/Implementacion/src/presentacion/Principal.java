@@ -109,7 +109,7 @@ public class Principal {
 			}
 			else if (opcion_seleccionada ==2){
 				System.out.println("Los vehiculos de la sede son:  \n");
-				System.out.println(ren.devolverVehiculos(user));
+				ren.devolverVehiculos(user);
 			}
 			else if (opcion_seleccionada ==3){
 				String nomcliente = (input("Ingrese el user del cliente"));
@@ -174,11 +174,13 @@ public class Principal {
 		int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
 		if (opcion_seleccionada == 1){
 			System.out.println("Los empleados de la sede son:  \n");
-			ren.devolverEmpleados(user);
+			String nomsede = (input("De que sede desea encontrar la informacion"));
+			ren.devolverEmpleadosadmin(nomsede);
 		}
 		else if (opcion_seleccionada ==2){
+			String nomsede = (input("De que sede desea encontrar la informacion"));
 			System.out.println("Los vehiculos de la sede son:  \n");
-			System.out.println(ren.devolverVehiculos(user));
+			ren.devolverVehiculos(nomsede);
 		}
 		else if (opcion_seleccionada ==3){
 			String nomcliente = (input("Ingrese el user del cliente"));
