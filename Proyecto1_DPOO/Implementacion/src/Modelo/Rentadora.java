@@ -46,6 +46,8 @@ public class Rentadora {
 		this.Sedes = Sedes;
 		this.Reservas = Reservas;
 		this.Vehiculos = Vehiculos;
+		this.seguros = new HashMap<String,SeguroAdicional>();
+		
 		
 		
 		

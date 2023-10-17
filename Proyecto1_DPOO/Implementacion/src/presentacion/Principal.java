@@ -274,10 +274,10 @@ public class Principal {
 				ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega,nombre);
 			}else if (opcion_seleccionada == 2) {
 			}}
-=======
-		}
-		}
-	}
+
+		
+		
+	
 	private void gestionarProveedores() {
 		System.out.println("1. Desea consultar que proveedores hay?  \n");
 		System.out.println("2. Desea agregar un proveedor? \n");
