@@ -33,13 +33,12 @@ public class Rentadora {
 	private Map <Integer, Vehiculo> Vehiculos;
 	private Tarifa tarifa;
 	private Map<String, SeguroAdicional> seguros;
-<<<<<<< Updated upstream
+
 	private Map<String, Categoria> categorias;
-=======
+
 	private Map<String, Proveedor> proveedores;
 	
-	
->>>>>>> Stashed changes
+
 	
 
 	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
@@ -219,6 +218,13 @@ public class Rentadora {
 		
 		
 	}
+	public void pedidoProveedor(String nom, int cantidad) {
+		Proveedor prov = proveedores.get(nom);
+		prov.agregarCantidad(cantidad);
+		proveedores.put(nom, prov);
+		
+		
+	}
 	public void eliminarProveedor(String nom) {
 		proveedores.remove(nom);
 		
@@ -229,6 +235,7 @@ public class Rentadora {
 		return prov;
 		
 	}
+	
 	public void eliminarSeguro(String nom) {
 		
 		seguros.remove(nom);

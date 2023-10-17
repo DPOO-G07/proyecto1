@@ -242,8 +242,10 @@ public class Principal {
 		
 		else {
 			System.out.println("Seleccione una opcion valida");
-<<<<<<< Updated upstream
-		}}}
+		}
+		}
+
+		}
 		
 	private void MenuCliente(String user) {
 		System.out.println("1. Desea hacer una reserva \n");
@@ -285,7 +287,7 @@ public class Principal {
 		else if (opcion ==2) {
 			String nom = input(("El nombre del nuevo proveedor"));
 			String vehiculo = input(("El nombre del vehiculo que distribuye"));
-			int cantidad = Integer.parseInt(input("El nombre del nuevo proveedor"));
+			int cantidad = Integer.parseInt(input("La cantidad de vehiculos que se pidieron "));
 			ren.agregarProveedor(nom, vehiculo, cantidad);
 				
 				
@@ -298,11 +300,13 @@ public class Principal {
 			ren.eliminarProveedor(nom);
 		}
 		else if (opcion ==4) {
+			String nom = input(("A que proveedor desea hacer el pedido"));
+			int cantidad = Integer.parseInt(input("la cantidad de vehiculos"));
+			ren.pedidoProveedor(nom, cantidad);
 			
 }
 	}
-	
->>>>>>> Stashed changes
+
 	private void modificarSede() {
 		String nomsede = (input("Que sede desea modificar? "));
 		
