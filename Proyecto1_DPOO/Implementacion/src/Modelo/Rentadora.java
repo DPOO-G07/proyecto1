@@ -313,7 +313,7 @@ public class Rentadora {
 		 double tarifaporDia2 = 10000000;
 		 String temporada2 = "alta";
 		 String nombre2 = "Lujo";
-		 ArrayList <Vehiculo> Lujo = new ArrayList<>();
+		 
 		 Categoria categoria2 = new Categoria(iddeCategoria2,tarifaporDia2,temporada2,nombre2,SUV);
 		 
 		categorias.put(nombre, categoria1);

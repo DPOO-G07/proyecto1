@@ -40,11 +40,9 @@ public class Principal {
 
 			}
 			else if (cargo.equalsIgnoreCase("Empleado")) {
-<<<<<<< HEAD
+
 				menuEmpleado(user);
-=======
-			
->>>>>>> c5523b2ffec5dc7205b6177e73a66578bececfbe
+
 			}
 			else if( cargo.equalsIgnoreCase("Cliente")) {
 				MenuCliente(user);
@@ -368,7 +366,7 @@ public class Principal {
 		
 		
 	}
-	private void MenuEmpleado(String user) {}
+	
 		
 
 
