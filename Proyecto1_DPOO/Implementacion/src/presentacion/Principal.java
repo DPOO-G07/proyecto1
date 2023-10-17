@@ -289,6 +289,7 @@ public class Principal {
 				String tipo = input("Por favor ingrese el tipo de tarjeta:");
 				new MetododePago(numerotar,fechacaducidad,tipo);
 				System.out.println("Se realizo el cobro del 30%");
+				System.out.println("su reserva de un" + categoria + "fue realizada con exito, puede pasar a recoger su vehiculo el" + fechadeRecoleccion + "a las" + horadeRecoleccion + "en la sede" + sede );
 				
 		}else if (opcion_seleccionada2 == 2) {
 			System.out.println("Este es el sistema de para recoger el carro por favor escoga una de las siguientes opciones  \n");
