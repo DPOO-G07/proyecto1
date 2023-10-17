@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import logica.Cliente;
 import logica.Empleado;
@@ -12,9 +13,13 @@ import logica.Persona;
 import logica.Reserva;
 import logica.Sede;
 import logica.Vehiculo;
-
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import logica.Categoria;
 
 public class Rentadora {
+	private Map<String,Categoria> Categorias;
 	private Map <String, Persona> Personas;
 	
 	private Map <String, Sede> Sedes;
@@ -111,6 +116,29 @@ public class Rentadora {
 		lasede.setListavehiculos(mapavehiculos);
 		Sedes.put(sede, lasede);
 		
+		
+	}
+	private void agregarCategorias() {
+		
+	}
+	
+	public void iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega) {
+		double id = Reservas.size() + 1;
+		double cobro = Categoria.getTarifaporDia() * obtenerNumeroDeDiasdeunareserva(fechadeRecoleccion,fechadeEntrega);
+		Reserva reserva = new Reserva (id, categoria, sede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nombredelcliente, estado);
+		
+		
+	    
+		
+	}
+	
+	private double obtenerNumeroDeDiasdeunareserva(String fechadeRecoleccion, String fechadeEntrega) throws ParseException {
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		Date fechaInicio = date.parse(fechadeRecoleccion);
+		Date fechaFinal = date.parse(fechadeEntrega);
+		double milisecondsByDay = 86400000;
+		double dias = (int) ((fechaFinal.getTime()-fechaInicio.getTime()) / milisecondsByDay);
+		return dias;
 		
 	}
 }
