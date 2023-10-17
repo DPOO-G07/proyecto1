@@ -40,7 +40,7 @@ public class Principal {
 
 			}
 			else if (cargo.equalsIgnoreCase("Empleado")) {
-
+				menuEmpleado(user);
 			}
 			else if( cargo.equalsIgnoreCase("Cliente")) {
 				MenuCliente(user);
@@ -92,6 +92,34 @@ public class Principal {
 		System.out.println("Se creo exitosamente la cuenta ");
 
 	}
+	private void menuEmpleado(String user) {
+		Boolean continuar = true;
+		while (continuar == true)
+			System.out.println("1. Desea consultar los vehiculos de la sede?  \n");
+			System.out.println("2. Desea consultar informacion de los clientes?  \n");
+			System.out.println("3. Desea agregar un nuevo cliente?  \n");
+			System.out.println("4. Salir del sistema  \n");
+			int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
+			if (opcion_seleccionada ==1){
+				System.out.println("Los vehiculos de la sede son:  \n");
+				ren.devolverVehiculos(user);
+			}
+			else if (opcion_seleccionada ==2){
+				String nomcliente = (input("Ingrese el user del cliente"));
+				Persona cliente = ren.devolverCliente(nomcliente);
+	
+				SolicitarInformacionCliente(cliente);
+	
+	
+	
+			}
+			else if (opcion_seleccionada ==3){
+				Inscripcion("Cliente");
+			}
+			else if (opcion_seleccionada ==4){
+				continuar = false;
+			}
+		}
 	private void Menuadministradorlocal(String user) {
 		Boolean continuar = true;
 		while (continuar == true) {

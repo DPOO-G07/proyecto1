@@ -41,7 +41,7 @@ public class Rentadora {
 
 	
 
-	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos,  Map<String, Categoria> categorias) {
+	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
 		this.Personas = Personas;
 		this.Sedes = Sedes;
 		this.Reservas = Reservas;
