@@ -233,11 +233,14 @@ public class Rentadora {
 	    
 		
 	}
-	public void iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega) {
+	public void iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega, String nombredelCliente) throws ParseException {
 		double id = Reservas.size() + 1;
 		Categoria lacategoria = categorias.get(categoria);
-		double cobro = lacategoria.getTarifaporDia() * obtenerNumeroDeDiasdeunareserva(fechadeRecoleccion,fechadeEntrega);
-		Reserva reserva = new Reserva (id, categoria, sede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nombredelcliente, estado);
+		double cobro = lacategoria.getTarifaporDia() * obtenerNumeroDeDiasdeunareserva(fechadeRecoleccion,fechadeEntrega); 
+		String estado = "disponible";
+		
+		Reserva reserva = new Reserva(id, categoria, sede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nombredelCliente, estado);
+		Reservas.put(id, reserva);
 	}
 
 	
