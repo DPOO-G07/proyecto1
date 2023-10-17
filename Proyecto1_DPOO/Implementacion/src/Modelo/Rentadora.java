@@ -324,15 +324,17 @@ public class Rentadora {
 	    
 		
 	}
-	public double iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega, String nombredelCliente) throws ParseException {
+	public ArrayList<Double> iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega, String nombredelCliente) throws ParseException {
+		ArrayList<Double> lista = new ArrayList<Double>();
 		double id = Reservas.size() + 1;
 		Categoria lacategoria = categorias.get(categoria);
 		double cobro = lacategoria.getTarifaporDia() * obtenerNumeroDeDiasdeunareserva(fechadeRecoleccion,fechadeEntrega); 
 		String estado = "disponible";
-		
 		Reserva reserva = new Reserva(id, categoria, sede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nombredelCliente, estado);
 		Reservas.put(id, reserva);
-		return cobro;
+		lista.add(cobro);
+		lista.add(id);
+		return lista;
 		
 	}
 

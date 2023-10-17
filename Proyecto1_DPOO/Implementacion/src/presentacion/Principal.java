@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.Map;
+import java.util.ArrayList;
 
 import Modelo.Rentadora;
 import logica.Empleado;
@@ -259,29 +260,31 @@ public class Principal {
 	}
 
 	private void MenuCliente(String user) throws ParseException {
-		System.out.println("1. Desea hacer una reserva \n");
-		System.out.println("2. Desea Recoger su vehiculo  \n");
+		System.out.println("1. Desea hacer una reserva");
+		System.out.println("2. Desea Recoger su vehiculo");
 		int opcion_seleccionada2 = Integer.parseInt(input("Por favor seleccione una opción"));
 		if (opcion_seleccionada2 == 1) {
 		
-				System.out.println("Este es el sistema de reservas por favor escoga una de las siguientes opciones para completar una reserva \n");
-				System.out.println("Estas son las categorias disponibles \n");
-				System.out.println(" Economica \n");
-				System.out.println(" SUV \n");
-				System.out.println(" Pequeño \n");
-				System.out.println(" Lujo \n");
+				System.out.println("Este es el sistema de reservas por favor escoga una de las siguientes opciones para completar una reserva");
+				System.out.println("Estas son las categorias disponibles");
+				System.out.println(" Economica ");
+				System.out.println(" SUV ");
+				System.out.println(" Pequeño");
+				System.out.println(" Lujo ");
 				String categoria = input("Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar:\n ");
-				System.out.println("Estas son las sedes disponibles \n");
-				System.out.println(" Motors Cañas \n");
-				System.out.println(" Motors Palmas \n");
-				System.out.println(" Motors Flora \n");
+				System.out.println("Estas son las sedes disponibles");
+				System.out.println(" Motors Cañas");
+				System.out.println(" Motors Palmas");
+				System.out.println(" Motors Flora");
 				String sede = input("Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo:\n  ");
 				String fechadeRecoleccion = input("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo:\n  ");
 				String horadeRecoleccion = input("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria recoger el vehiculo:\n  ");
 				String fechadeEntrega = input("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria entregar el vehiculo:\n  ");
 				String horadeEntrega = input("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo:\n  ");
 				String nombre = input("Por favor ingrese su nombre: \n  ");
-				double cobro = ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega,nombre);
+				ArrayList<Double> lista = ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega,nombre);
+				double cobro =lista.get(0);
+				double id = lista.get(1);
 				double cobro30 = cobro * 0.3;
 				System.out.println("El monto que debe pagar es: "+ cobro30);
 				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
@@ -289,11 +292,18 @@ public class Principal {
 				String tipo = input("Por favor ingrese el tipo de tarjeta:");
 				new MetododePago(numerotar,fechacaducidad,tipo);
 				System.out.println("Se realizo el cobro del 30%");
-				System.out.println("su reserva de un" + categoria + "fue realizada con exito, puede pasar a recoger su vehiculo el" + fechadeRecoleccion + "a las" + horadeRecoleccion + "en la sede" + sede );
+				System.out.println("su reserva de un " + categoria + " fue realizada con exito, puede pasar a recoger su vehiculo el " + fechadeRecoleccion + "a las " + horadeRecoleccion + " en la sede " + sede + " el numero de reserva es: "+ id );
 				
 		}else if (opcion_seleccionada2 == 2) {
 			System.out.println("Este es el sistema de para recoger el carro por favor escoga una de las siguientes opciones  \n");
-			System.out.println("Este es el sistema de reservas por favor escoga una de las siguientes opciones para completar una reserva \n");
+			String otroconductor = input("Desea añadir un conductor responda si/no");
+			if (otroconductor == "si") {
+				
+			}else if (otroconductor == "no") {
+
+			}
+			
+			
 			
 			
 		}
