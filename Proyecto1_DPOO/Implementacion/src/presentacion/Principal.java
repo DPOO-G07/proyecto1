@@ -40,7 +40,7 @@ public class Principal {
 
 			}
 			else if (cargo.equalsIgnoreCase("Empleado")) {
-
+			
 			}
 			else if( cargo.equalsIgnoreCase("Cliente")) {
 				MenuCliente(user);
@@ -299,6 +299,16 @@ public class Principal {
 			String otroconductor = input("Desea añadir un conductor responda si/no");
 			if (otroconductor == "si") {
 				double numerodereserva = Double.parseDouble(input("Por favor ingrese el numero de la reserva:\n "));
+				double cobro = ren.obtenercobrofinal(numerodereserva);
+				System.out.println("Este el cobro de un conductor adicional es de:"+ cobro*0.2);
+				double cobro2 = cobro*0.2 + cobro;
+				System.out.println("Este es el cobro final del carro:"+ cobro2);
+				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
+				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+				String tipo = input("Por favor ingrese el tipo de tarjeta:");
+				new MetododePago(numerotar,fechacaducidad,tipo);
+				System.out.println("Se realizo el cobro total, ya puede recoger su vehiculo y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo");
+				
 				
 				
 			}else if (otroconductor == "no") {
@@ -309,7 +319,7 @@ public class Principal {
 				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
 				String tipo = input("Por favor ingrese el tipo de tarjeta:");
 				new MetododePago(numerotar,fechacaducidad,tipo);
-				System.out.println("Se realizo el cobro del 70%");
+				System.out.println("Se realizo el cobro total y su tarjeta ha sido bloqueada hasta que se devuelva el vehiculo");
 				
 				
 
@@ -326,6 +336,8 @@ public class Principal {
 		
 		
 	}
+	private void MenuEmpleado(String user) {}
+		
 
 
 
