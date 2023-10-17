@@ -16,6 +16,7 @@ import java.util.Map;
 import logica.Cliente;
 import logica.Empleado;
 import logica.Persona;
+import logica.Proveedor;
 import logica.Reserva;
 import logica.Sede;
 import logica.SeguroAdicional;
@@ -32,7 +33,13 @@ public class Rentadora {
 	private Map <Integer, Vehiculo> Vehiculos;
 	private Tarifa tarifa;
 	private Map<String, SeguroAdicional> seguros;
+<<<<<<< Updated upstream
 	private Map<String, Categoria> categorias;
+=======
+	private Map<String, Proveedor> proveedores;
+	
+	
+>>>>>>> Stashed changes
 	
 
 	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
@@ -112,7 +119,15 @@ public class Rentadora {
 	}
 		else {
 			String nomsede = (input("Por favor ingrese la sede que hara parte"));
-			Persona lapersona = new Empleado(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password,nomsede);
+			Empleado lapersona = new Empleado(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password,nomsede);
+			Sede lasede = Sedes.get(nomsede);
+			Map<String, Empleado> mapa = lasede.getListaempleados();
+			mapa.put(login, lapersona);
+			lasede.setmapempleados(mapa);
+			
+			Sedes.put(nombre, lasede);
+			
+			
 			Personas.put(login, lapersona);
 		}
 		
@@ -172,9 +187,46 @@ public class Rentadora {
 		
 		
 	}
+	public void Proveedores() {
+		String nomv = "mazda";
+		String nomv1 = "susuki";
+		String nomv2 = "mercedes";
+		String nom = "Mercado libre";
+		String nom2 = "Automercol";
+		String nom3 = "La romana";
+		int cantidad = 3;
+		Proveedor prov1 = crearProveedor(nom,nomv,cantidad);
+		Proveedor prov2 = crearProveedor(nom2,nomv1,cantidad);
+		Proveedor prov3 = crearProveedor(nom3,nomv2,cantidad);
+		proveedores.put(nom,prov1);
+		proveedores.put(nom,prov2);
+		proveedores.put(nom,prov3);
+		
+	}
+	public void mostrarProveedores() {
+		for (Proveedor elprov : proveedores.values()) {
+			System.out.println(elprov.getNombre());
+		}
+	}
 	public void agregarSeguro(String nom, int tarifa) {
 		SeguroAdicional segurito = new SeguroAdicional(nom,tarifa);
 		seguros.put(nom, segurito);
+		
+	}
+	public void agregarProveedor(String nom, String vehiculo, int cantidad) {
+		Proveedor prov = crearProveedor(nom,vehiculo,cantidad);
+		proveedores.put(nom, prov);
+		
+		
+	}
+	public void eliminarProveedor(String nom) {
+		proveedores.remove(nom);
+		
+	}
+	public Proveedor crearProveedor(String nom,String vehiculo,int cantidad) {
+		Proveedor prov = new Proveedor(nom, vehiculo, cantidad);
+		
+		return prov;
 		
 	}
 	public void eliminarSeguro(String nom) {
@@ -200,12 +252,12 @@ public class Rentadora {
 		nomsede.setAdministradordeSede(nuevoadmin);
 		Sedes.put(sede, nomsede);
 	}
-	public void agregarVehiculosede(String sede,int id, Vehiculo elvehiculo) {
+	public void agregarVehiculo(String sede,int id, Vehiculo elvehiculo) {
 		Sede lasede = Sedes.get(sede);
 		Map <Integer,Vehiculo> mapa = lasede.getMapaVehiculos();
 		mapa.put(id, elvehiculo);
 		lasede.setListavehiculos(mapa);
-		
+		Vehiculos.put(id, elvehiculo);
 		Sedes.put(sede, lasede);
 		
 		

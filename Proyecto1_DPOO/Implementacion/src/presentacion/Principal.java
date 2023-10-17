@@ -236,7 +236,7 @@ public class Principal {
 			modificarSede();
 		}
 		else if (opcion_seleccionada == 10) {
-			
+			gestionarProveedores();
 		}
 		else if (opcion_seleccionada ==11){
 			continuar = false;
@@ -244,6 +244,7 @@ public class Principal {
 		
 		else {
 			System.out.println("Seleccione una opcion valida");
+<<<<<<< Updated upstream
 		}}}
 		
 	private void MenuCliente(String user) throws ParseException {
@@ -271,6 +272,40 @@ public class Principal {
 				ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega,nombre);
 			}else if (opcion_seleccionada == 2) {
 			}}
+=======
+		}
+		}
+	}
+	private void gestionarProveedores() {
+		System.out.println("1. Desea consultar que proveedores hay?  \n");
+		System.out.println("2. Desea agregar un proveedor? \n");
+		System.out.println("3. Desea eliminar un proovedor?  \n");
+		System.out.println("4. Desea hacer un pedido? \n");
+		int opcion = Integer.parseInt(input("Por favor seleccione una opción"));
+		if (opcion == 1) {
+			ren.mostrarProveedores();
+		}
+		else if (opcion ==2) {
+			String nom = input(("El nombre del nuevo proveedor"));
+			String vehiculo = input(("El nombre del vehiculo que distribuye"));
+			int cantidad = Integer.parseInt(input("El nombre del nuevo proveedor"));
+			ren.agregarProveedor(nom, vehiculo, cantidad);
+				
+				
+			}
+			
+		
+
+		else if (opcion ==3) {
+			String nom = input(("El nombre del proveedor"));
+			ren.eliminarProveedor(nom);
+		}
+		else if (opcion ==4) {
+			
+}
+	}
+	
+>>>>>>> Stashed changes
 	private void modificarSede() {
 		String nomsede = (input("Que sede desea modificar? "));
 		
@@ -300,10 +335,10 @@ public class Principal {
 			
 		}
 		else if (opcion ==3) {
-			crearVehiculo();
+			Inscripcion("Empleado");
 		}
 		else if (opcion ==4) {
-			
+			crearVehiculo();
 }
 	}
 
@@ -324,7 +359,7 @@ public class Principal {
 		String sede = (input("Por favor ingrese su sede"));
 		
 		Vehiculo elvechicul = new Vehiculo(id,categoria,estado, ubicacion,placa,marca,modelo,color,tipotransmision,capacidad,sede);
-		ren.agregarVehiculosede(sede, id, elvechicul);
+		ren.agregarVehiculo(sede, id, elvechicul);
 	}
 	private void SolicitarInformacionCliente(Persona cliente) {
 		System.out.println("1. Desea saber su nombre");
