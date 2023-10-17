@@ -1,36 +1,43 @@
 package Modelo;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collection;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import logica.Cliente;
 import logica.Empleado;
 import logica.Persona;
 import logica.Reserva;
 import logica.Sede;
+import logica.SeguroAdicional;
+import logica.Tarifa;
 import logica.Vehiculo;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import logica.Categoria;
+
 
 public class Rentadora {
-	private Map<String,Categoria> Categorias;
 	private Map <String, Persona> Personas;
 	
 	private Map <String, Sede> Sedes;
 	private Map <Double, Reserva> Reservas;
 	private Map <Integer, Vehiculo> Vehiculos;
+	private Tarifa tarifa;
+	private Map<String, SeguroAdicional> seguros;
+	
+	
 
 	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
-		this.Personas = new HashMap <String, Persona>();
-		this.Sedes = new HashMap <String, Sede>();
-		this.Reservas = new HashMap <Double, Reserva>();
-		this.Vehiculos = new HashMap<Integer,Vehiculo>();
+		this.Personas = Personas;
+		this.Sedes = Sedes;
+		this.Reservas = Reservas;
+		this.Vehiculos = Vehiculos;
+		
+		
+		
 		
 		
 		
@@ -56,7 +63,7 @@ public class Rentadora {
 		Persona lapersona =  Personas.get(usuario);
 		String contraseña = lapersona.getPassword();
 		String cargo = lapersona.getCargo();
-		if (contraseña == Password) {
+		if (contraseña.equals(Password)) {
 			return cargo;
 		}
 		else 
@@ -66,13 +73,16 @@ public class Rentadora {
 		
 		
 	}
-	public ArrayList<Empleado> devolverEmpleados(String user){
+	public void devolverEmpleados(String user){
 		Empleado elempleado = (Empleado) Personas.get(user);
 		String nomsede = elempleado.getNomsede();
 		Sede lasede = Sedes.get(nomsede);
 		ArrayList<Empleado> lista = new ArrayList<Empleado>(lasede.getListaempleados().values());
+		for (Empleado elemp : lista) {
+			System.out.println(elemp.getNombre());
+		}
 		
-		return lista;
+		
 		
 	}
 	public ArrayList<Vehiculo> devolverVehiculos(String user){
@@ -89,8 +99,18 @@ public class Rentadora {
 	}
 	public void agregarPersona (String cargo,String nombre, double cedula, String fechadeNacimiento, String nacionalidad, String email,
 			double celular, String login, String password) {
-		Persona lapersona = new Cliente(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password);
-		Personas.put(login, lapersona);
+		if (cargo.equalsIgnoreCase("Cliente")){
+			Double licencia = Double.parseDouble(input("Por favor ingrese su licencia"));
+			Double metododepago = Double.parseDouble(input("Por favor ingrese su metodo de pago"));
+			Persona lapersona = new Cliente(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password, licencia,metododepago);
+			Personas.put(login, lapersona);
+	}
+		else {
+			String nomsede = (input("Por favor ingrese la sede que hara parte"));
+			Persona lapersona = new Empleado(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password,nomsede);
+			Personas.put(login, lapersona);
+		}
+		
 	}
 	public void actualizarEstadoVehiculo(Integer id, String estado) {
 		Vehiculo elcarro = Vehiculos.get(id);
@@ -118,29 +138,74 @@ public class Rentadora {
 		
 		
 	}
-	private void agregarCategorias() {
+	public String input(String mensaje)
+	{
+		try
+		{
+			System.out.print(mensaje + ": ");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			return reader.readLine();
+		}
+		catch (IOException e)
+		{
+			System.out.println("Error leyendo de la consola");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public void Seguros(){
+		String nom1 = "Seguros Bolivar";
+		int tarifa1 = 20000;
+		SeguroAdicional seguro1 = new SeguroAdicional(nom1,tarifa1);
+		
+		String nome2 = "Seguros Sura";
+		int tarifa2 = 30000;
+		SeguroAdicional seguro2 = new SeguroAdicional(nome2,tarifa2);
+		seguros.put(nom1, seguro1);
+		seguros.put(nom1, seguro2);
+		
+		
+		
+	}
+	public void agregarSeguro(String nom, int tarifa) {
+		SeguroAdicional segurito = new SeguroAdicional(nom,tarifa);
+		seguros.put(nom, segurito);
+		
+	}
+	public void eliminarSeguro(String nom) {
+		
+		seguros.remove(nom);
+		
+	}
+	public void cambiarHorarios (String sede, String nuevohorario) {
+		Sede nomsede = Sedes.get(sede);
+		
+		nomsede.setHorariosdeAtencion(nuevohorario);
+		Sedes.put(sede, nomsede);
+	}
+	public void cambiarAdmin(String sede, String nuevoadmin, boolean nuevo) {
+		if (nuevo == false) {
+			Persona eladmin = Personas.get(nuevoadmin);
+			eladmin.setCargo("Administrador Local");
+			Personas.put(nuevoadmin, eladmin);
+			
+		}
+		Sede nomsede = Sedes.get(sede);
+		
+		nomsede.setAdministradordeSede(nuevoadmin);
+		Sedes.put(sede, nomsede);
+	}
+	public void agregarVehiculosede(String sede,int id, Vehiculo elvehiculo) {
+		Sede lasede = Sedes.get(sede);
+		Map <Integer,Vehiculo> mapa = lasede.getMapaVehiculos();
+		mapa.put(id, elvehiculo);
+		lasede.setListavehiculos(mapa);
+		
+		Sedes.put(sede, lasede);
+		
 		
 	}
 	
-	public void iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega) {
-		double id = Reservas.size() + 1;
-		double cobro = Categoria.getTarifaporDia() * obtenerNumeroDeDiasdeunareserva(fechadeRecoleccion,fechadeEntrega);
-		Reserva reserva = new Reserva (id, categoria, sede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nombredelcliente, estado);
-		
-		
-	    
-		
-	}
-	
-	private double obtenerNumeroDeDiasdeunareserva(String fechadeRecoleccion, String fechadeEntrega) throws ParseException {
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		Date fechaInicio = date.parse(fechadeRecoleccion);
-		Date fechaFinal = date.parse(fechadeEntrega);
-		double milisecondsByDay = 86400000;
-		double dias = (int) ((fechaFinal.getTime()-fechaInicio.getTime()) / milisecondsByDay);
-		return dias;
-		
-	}
 }
 
 
