@@ -47,6 +47,7 @@ public class Rentadora {
 		this.Reservas = Reservas;
 		this.Vehiculos = Vehiculos;
 		this.seguros = new HashMap<String,SeguroAdicional>();
+		this.proveedores = new HashMap<String,Proveedor>();
 		
 		
 		
@@ -205,7 +206,7 @@ public class Rentadora {
 		int tarifa2 = 30000;
 		SeguroAdicional seguro2 = new SeguroAdicional(nome2,tarifa2);
 		seguros.put(nom1, seguro1);
-		seguros.put(nom1, seguro2);
+		seguros.put(nome2, seguro2);
 		
 		
 		
@@ -222,13 +223,18 @@ public class Rentadora {
 		Proveedor prov2 = crearProveedor(nom2,nomv1,cantidad);
 		Proveedor prov3 = crearProveedor(nom3,nomv2,cantidad);
 		proveedores.put(nom,prov1);
-		proveedores.put(nom,prov2);
-		proveedores.put(nom,prov3);
+		proveedores.put(nom2,prov2);
+		proveedores.put(nom3,prov3);
 		
 	}
 	public void mostrarProveedores() {
 		for (Proveedor elprov : proveedores.values()) {
 			System.out.println(elprov.getNombre());
+		}
+	}
+	public void mostrarSeguross() {
+		for (SeguroAdicional elseg : seguros.values()) {
+			System.out.println(elseg.getNombredelSeguro());
 		}
 	}
 	public void agregarSeguro(String nom, int tarifa) {
@@ -246,6 +252,7 @@ public class Rentadora {
 		Proveedor prov = proveedores.get(nom);
 		prov.agregarCantidad(cantidad);
 		proveedores.put(nom, prov);
+		System.out.println("Con este pedido se han hecho " + prov.getCantidaddeVehiculo());
 		
 		
 	}

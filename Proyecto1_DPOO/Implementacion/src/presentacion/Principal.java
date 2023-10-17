@@ -23,6 +23,7 @@ public class Principal {
 		System.out.println("Rentadora de carros \n");
 		Inicializaraplicacion();
 		ren.Seguros();
+		ren.Proveedores();
 		Boolean continuar = true;
 		while (continuar == true) {
 			String user = (input("Por favor ingrese su usuario"));
@@ -179,8 +180,8 @@ public class Principal {
 		}
 		else if (opcion_seleccionada ==2){
 			String nomsede = (input("De que sede desea encontrar la informacion"));
-			System.out.println("Los vehiculos de la sede son:  \n");
-			ren.devolverVehiculos(nomsede);
+			System.out.println("Las placas de los vehiculos de la sede son:  \n");
+			ren.devolverVehiculosadmin(nomsede);
 		}
 		else if (opcion_seleccionada ==3){
 			String nomcliente = (input("Ingrese el user del cliente"));
@@ -218,7 +219,8 @@ public class Principal {
 		}
 		else if (opcion_seleccionada == 8) {
 			System.out.println("1. Desea agregar un seguro?  \n");
-			System.out.println("1. Desea eliminar un seguro?  \n");
+			System.out.println("2. Desea eliminar un seguro?  \n");
+			System.out.println("3. Desea saber que seguros hay?  \n");
 			int opcion = Integer.parseInt(input("Por favor seleccione una opción"));
 			if (opcion ==1) {
 				String nomSeguro = (input("El nombre del seguro: "));
@@ -228,6 +230,10 @@ public class Principal {
 			else if(opcion ==2) {
 				String nomSeguro = (input("El nombre del seguro: "));
 				ren.eliminarSeguro(nomSeguro);
+			}
+			else if(opcion ==3) {
+				System.out.println("Los seguros son:   \n");
+				ren.mostrarSeguross();
 			}
 			}
 		
