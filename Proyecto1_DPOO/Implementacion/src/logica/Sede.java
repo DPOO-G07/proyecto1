@@ -69,6 +69,10 @@ public class Sede {
 	public void setListavehiculos(Map<Integer, Vehiculo> listaVehiculos) {
 		this.listaVehiculos = listaVehiculos;
 	}
+	public void setmapempleados(Map<String, Empleado> mapempleados) {
+		this.empleadosSede = mapempleados;
+		
+	}
 
 		
 		

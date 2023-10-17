@@ -6,13 +6,13 @@ public class Proveedor {
 	public String nombre;
 	public String vehiculo;
 	public int cantidaddeVehiculo;
-	public static ArrayList<Vehiculo> listaVehiculos;
-	public Proveedor(String nombre, String vehiculo, int cantidaddeVehiculo,ArrayList<Vehiculo> listaVehiculos) {
+	
+	public Proveedor(String nombre, String vehiculo, int cantidaddeVehiculo) {
 		super();
 		this.nombre = nombre;
 		this.vehiculo = vehiculo;
 		this.cantidaddeVehiculo = cantidaddeVehiculo;
-		Proveedor.listaVehiculos = listaVehiculos;
+		
 	}
 	public String getNombre() {
 		return nombre;
@@ -23,12 +23,12 @@ public class Proveedor {
 	public int getCantidaddeVehiculo() {
 		return cantidaddeVehiculo;
 	}
-	public void agregarVehiculo( Vehiculo elvehiculo) {
-		 listaVehiculos.add(elvehiculo);
+	public void agregarCantidad(int cantidad) {
+		this.cantidaddeVehiculo = cantidaddeVehiculo + cantidad;
+		
+		
 	}
-	public void setListavehiculos(ArrayList<Vehiculo> listaVehiculos) {
-		Proveedor.listaVehiculos = listaVehiculos;
-	}
+	
 	
 
 }
