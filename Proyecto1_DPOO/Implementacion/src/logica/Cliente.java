@@ -1,13 +1,15 @@
 package logica;
 
 public class Cliente extends Persona{
-	public String clientedelaEmpresa;
+	
 	public double licenciadeConduccion;
 	public double metododePago;
 	public Cliente(String cargo,String nombre, double cedula, String fechadeNacimiento, String nacionalidad, String email,
-			double celular, String login, String password) {
+			double celular, String login, String password, double licencia, double metododepago) {
 		super(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, celular, login, password);
 		// TODO Auto-generated constructor stub
+		this.licenciadeConduccion = licencia;
+		this.metododePago = metododepago;
 	}
 	@Override
 	public String getNombre() {
@@ -70,12 +72,7 @@ public class Cliente extends Persona{
 		// TODO Auto-generated method stub
 		return this.cedula;
 	}
-	@Override
-	public void setCelular(Double celular) {
-		// TODO Auto-generated method stub
-		this.celular = celular;
-	}
-	@Override
+	
 	public String getLogin() {
 		// TODO Auto-generated method stub
 		return this.login;
@@ -104,6 +101,12 @@ public class Cliente extends Persona{
 	public void setCargo(String cargo) {
 		// TODO Auto-generated method stub
 		this.cargo = cargo;
+	}
+	@Override
+	public void setCelular(Double celular) {
+		// TODO Auto-generated method stub
+		this.celular = celular;
+		
 	}
 }
 
