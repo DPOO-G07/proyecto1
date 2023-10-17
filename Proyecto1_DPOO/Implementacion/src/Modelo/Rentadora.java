@@ -41,13 +41,14 @@ public class Rentadora {
 
 	
 
-	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
+	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos,  Map<String, Categoria> categorias) {
 		this.Personas = Personas;
 		this.Sedes = Sedes;
 		this.Reservas = Reservas;
 		this.Vehiculos = Vehiculos;
 		this.seguros = new HashMap<String,SeguroAdicional>();
 		this.proveedores = new HashMap<String,Proveedor>();
+		this.categorias = new HashMap<String,Categoria>();
 		
 		
 		
@@ -323,7 +324,7 @@ public class Rentadora {
 	    
 		
 	}
-	public void iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega, String nombredelCliente) throws ParseException {
+	public double iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega, String nombredelCliente) throws ParseException {
 		double id = Reservas.size() + 1;
 		Categoria lacategoria = categorias.get(categoria);
 		double cobro = lacategoria.getTarifaporDia() * obtenerNumeroDeDiasdeunareserva(fechadeRecoleccion,fechadeEntrega); 
@@ -331,6 +332,8 @@ public class Rentadora {
 		
 		Reserva reserva = new Reserva(id, categoria, sede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nombredelCliente, estado);
 		Reservas.put(id, reserva);
+		return cobro;
+		
 	}
 
 	
