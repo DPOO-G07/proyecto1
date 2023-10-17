@@ -2,6 +2,10 @@ package Modelo;
 
 
 import java.io.BufferedReader;
+
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ import logica.Sede;
 import logica.SeguroAdicional;
 import logica.Tarifa;
 import logica.Vehiculo;
+import logica.Categoria;
 
 
 public class Rentadora {
@@ -27,7 +32,7 @@ public class Rentadora {
 	private Map <Integer, Vehiculo> Vehiculos;
 	private Tarifa tarifa;
 	private Map<String, SeguroAdicional> seguros;
-	
+	private Map<String, Categoria> categorias;
 	
 
 	public Rentadora (Map <String, Persona> Personas,Map <String, Sede> Sedes,  Map <Double, Reserva> Reservas, Map <Integer, Vehiculo> Vehiculos) {
@@ -205,6 +210,47 @@ public class Rentadora {
 		
 		
 	}
+	public void categoria(){
+		 double iddeCategoria = 1;
+		 double tarifaporDia = 1000000;
+		 String temporada = "alta";
+		 String nombre = "SUV";
+		 ArrayList <Vehiculo> SUV = new ArrayList<>();
+		 Categoria categoria1 = new Categoria(iddeCategoria,tarifaporDia,temporada,nombre,SUV);
+		 
+		 double iddeCategoria2 = 2;
+		 double tarifaporDia2 = 10000000;
+		 String temporada2 = "alta";
+		 String nombre2 = "Lujo";
+		 ArrayList <Vehiculo> Lujo = new ArrayList<>();
+		 Categoria categoria2 = new Categoria(iddeCategoria2,tarifaporDia2,temporada2,nombre2,SUV);
+		 
+		categorias.put(nombre, categoria1);
+		categorias.put(nombre2, categoria2);
+;
+	
+		
+	    
+		
+	}
+	public void iniciarReserva(String categoria, String sede, String fechadeRecoleccion, String horadeRecoleccion,String fechadeEntrega,String horadeEntrega) {
+		double id = Reservas.size() + 1;
+		Categoria lacategoria = categorias.get(categoria);
+		double cobro = lacategoria.getTarifaporDia() * obtenerNumeroDeDiasdeunareserva(fechadeRecoleccion,fechadeEntrega);
+		Reserva reserva = new Reserva (id, categoria, sede, fechadeRecoleccion, horadeRecoleccion, fechadeEntrega, horadeEntrega, cobro, nombredelcliente, estado);
+	}
+
+	
+	private double obtenerNumeroDeDiasdeunareserva(String fechadeRecoleccion, String fechadeEntrega) throws ParseException {
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		Date fechaInicio = date.parse(fechadeRecoleccion);
+		Date fechaFinal = date.parse(fechadeEntrega);
+		double milisecondsByDay = 86400000;
+		double dias = (int) ((fechaFinal.getTime()-fechaInicio.getTime()) / milisecondsByDay);
+		return dias;
+		
+	}
+	
 	
 }
 

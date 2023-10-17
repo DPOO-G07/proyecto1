@@ -242,9 +242,32 @@ public class Principal {
 		
 		else {
 			System.out.println("Seleccione una opcion valida");
-		}
-		}
-	}
+		}}}
+		
+	private void MenuCliente(String user) {
+		System.out.println("1. Desea hacer una reserva \n");
+		System.out.println("2. Desea recoger carro \n");
+		System.out.println("3. Desea hacer devolucion del vehiculo\n");
+			int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
+			if (opcion_seleccionada == 1) {
+				System.out.println("Estas son las categorias disponibles \n");
+				System.out.println(" Economica \n");
+				System.out.println(" SUV \n");
+				System.out.println(" Pequeño \n");
+				System.out.println(" Lujo \n");
+				String categoria = input("Por favor ingrese el nombre de la categoria del vehiculo que le gustaria reservar:\n ");
+				System.out.println("Estas son las sedes disponibles \n");
+				System.out.println(" Motors Cañas \n");
+				System.out.println(" Motors Palmas \n");
+				System.out.println(" Motors Flora \n");
+				String sede = input("Por favor ingrese el nombre de la sede en la cual le gustaria recoger el vehiculo:\n  ");
+				String fechadeRecoleccion = input("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria recoger el vehiculo:\n  ");
+				String horadeRecoleccion = input("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria recoger el vehiculo:\n  ");
+				String fechadeEntrega = input("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria entregar el vehiculo:\n  ");
+				String horadeEntrega = input("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo:\n  ");
+				ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega;
+			}else if (opcion_seleccionada == 2) {
+			}}
 	private void modificarSede() {
 		String nomsede = (input("Que sede desea modificar? "));
 		
