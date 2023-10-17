@@ -3,6 +3,7 @@ package presentacion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.util.Map;
 
 import Modelo.Rentadora;
@@ -17,7 +18,7 @@ public class Principal {
 	private Rentadora ren;
 	
 		
-	public void ejecutarAplicacion() throws IOException
+	public void ejecutarAplicacion() throws IOException, ParseException
 	{
 		System.out.println("Rentadora de carros \n");
 		Inicializaraplicacion();
@@ -39,6 +40,7 @@ public class Principal {
 				
 			}
 			else if( cargo.equalsIgnoreCase("Cliente")) {
+				MenuCliente(user);
 				
 			}
 			else {
@@ -247,7 +249,7 @@ public class Principal {
 
 		}
 		
-	private void MenuCliente(String user) {
+	private void MenuCliente(String user) throws ParseException {
 		System.out.println("1. Desea hacer una reserva \n");
 		System.out.println("2. Desea recoger carro \n");
 		System.out.println("3. Desea hacer devolucion del vehiculo\n");
@@ -268,7 +270,8 @@ public class Principal {
 				String horadeRecoleccion = input("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria recoger el vehiculo:\n  ");
 				String fechadeEntrega = input("Por favor ingrese la fecha en formato yyyy-MM-dd en la cual le gustaria entregar el vehiculo:\n  ");
 				String horadeEntrega = input("Por favor ingrese la hora en formato militar y con esta notacion HH:MM  en la cual le gustaria entregar el vehiculo:\n  ");
-				ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega;
+				String nombre = input("Por favor ingrese su nombre: \n  ");
+				ren.iniciarReserva(categoria,sede,fechadeRecoleccion,horadeRecoleccion,fechadeEntrega,horadeEntrega,nombre);
 			}else if (opcion_seleccionada == 2) {
 			}}
 =======
@@ -413,7 +416,7 @@ public class Principal {
 		}
 		return null;
 	}
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args) throws IOException, ParseException
 	{
 		Principal consola = new Principal();
 		consola.ejecutarAplicacion();
