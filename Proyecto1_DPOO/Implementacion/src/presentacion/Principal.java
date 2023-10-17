@@ -298,8 +298,20 @@ public class Principal {
 			System.out.println("Este es el sistema de para recoger el carro por favor escoga una de las siguientes opciones  \n");
 			String otroconductor = input("Desea añadir un conductor responda si/no");
 			if (otroconductor == "si") {
+				double numerodereserva = Double.parseDouble(input("Por favor ingrese el numero de la reserva:\n "));
+				
 				
 			}else if (otroconductor == "no") {
+				double numerodereserva = Double.parseDouble(input("Por favor ingrese el numero de la reserva:\n "));
+				double cobro = ren.obtenercobrofinal(numerodereserva);
+				System.out.println("Este es el cobro final del carro:"+ cobro);
+				double numerotar = Double.parseDouble(input("Por favor ingrese el numero de tarjeta:"));
+				String fechacaducidad = input("Por favor ingrese la fecha de caducidad en formato yyyy-MM-dd:");
+				String tipo = input("Por favor ingrese el tipo de tarjeta:");
+				new MetododePago(numerotar,fechacaducidad,tipo);
+				System.out.println("Se realizo el cobro del 70%");
+				
+				
 
 			}
 			

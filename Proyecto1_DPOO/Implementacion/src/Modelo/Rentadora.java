@@ -349,6 +349,17 @@ public class Rentadora {
 		
 	}
 	
+	public double obtenercobrofinal(double id) {
+		Reserva reserva = Reservas.get(id);
+		double cobro = reserva.getCobro();
+		cobro = cobro*0.7;
+		return cobro;
+		}
+	
+	//public double obtenercobrofinalcontarifaadicional() {
+		
+	
+	
 	
 }
 
