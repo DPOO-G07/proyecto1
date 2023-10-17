@@ -14,6 +14,7 @@ import logica.Empleado;
 import logica.Persona;
 import logica.Reserva;
 import logica.Sede;
+import logica.SeguroAdicional;
 import logica.Tarifa;
 import logica.Vehiculo;
 
@@ -24,6 +25,8 @@ public class Rentadora {
 	private Map <String, Sede> Sedes;
 	private Map <Double, Reserva> Reservas;
 	private Map <Integer, Vehiculo> Vehiculos;
+	private Tarifa tarifa;
+	private Map<String, SeguroAdicional> seguros;
 	
 	
 
@@ -32,6 +35,9 @@ public class Rentadora {
 		this.Sedes = Sedes;
 		this.Reservas = Reservas;
 		this.Vehiculos = Vehiculos;
+		
+		
+		
 		
 		
 		
@@ -67,13 +73,16 @@ public class Rentadora {
 		
 		
 	}
-	public ArrayList<Empleado> devolverEmpleados(String user){
+	public void devolverEmpleados(String user){
 		Empleado elempleado = (Empleado) Personas.get(user);
 		String nomsede = elempleado.getNomsede();
 		Sede lasede = Sedes.get(nomsede);
 		ArrayList<Empleado> lista = new ArrayList<Empleado>(lasede.getListaempleados().values());
+		for (Empleado elemp : lista) {
+			System.out.println(elemp.getNombre());
+		}
 		
-		return lista;
+		
 		
 	}
 	public ArrayList<Vehiculo> devolverVehiculos(String user){
@@ -143,6 +152,20 @@ public class Rentadora {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public void Seguros(){
+		String nom1 = "Seguros Bolivar";
+		int tarifa1 = 20000;
+		SeguroAdicional seguro1 = new SeguroAdicional(nom1,tarifa1);
+		
+		String nome2 = "Seguros Sura";
+		int tarifa2 = 30000;
+		SeguroAdicional seguro2 = new SeguroAdicional(nome2,tarifa2);
+		seguros.put(nom1, seguro1);
+		seguros.put(nom1, seguro2);
+		
+		
+		
 	}
 }
 

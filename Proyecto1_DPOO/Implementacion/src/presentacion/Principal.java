@@ -76,7 +76,7 @@ public class Principal {
 		String email = (input("Por favor ingrese su email"));
 		Double numero = Double.parseDouble(input("Por favor ingrese su numero"));
 		String login = (input("Por favor ingrese como desea su login"));
-		String password = (input("Por favor ingrese su contraseña"));
+		String password = (input("Por favor ingrese deje a la persona ingresar su contraseña"));
 	
 			
 		ren.agregarPersona(cargo, nombre, cedula, fechadeNacimiento, nacionalidad, email, numero, login, password);
@@ -85,62 +85,75 @@ public class Principal {
 		
 	}
 	private void Menuadministradorlocal(String user) {
-		System.out.println("Bienvenido Administrador\n");
-		System.out.println("1. Desea consultar la informacion de los empleados de la sede? \n");
-		System.out.println("2. Desea consultar los vehiculos de la sede?  \n");
-		System.out.println("3. Desea consultar informacion de los clientes?  \n");
-		System.out.println("4. Desea agregar un nuevo empleado?  \n");
-		System.out.println("5. Desea agregar un nuevo cliente?  \n");
-		System.out.println("6. Desea actualizar el estado de un vehiculo?  \n");
-		int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
-		if (opcion_seleccionada == 1){
-			System.out.println("Los empleados de la sede son:  \n");
-			System.out.println(ren.devolverEmpleados(user));
-		}
-		else if (opcion_seleccionada ==2){
-			System.out.println("Los vehiculos de la sede son:  \n");
-			System.out.println(ren.devolverVehiculos(user));
-		}
-		else if (opcion_seleccionada ==3){
-			String nomcliente = (input("Ingrese el user del cliente"));
-			Persona cliente = ren.devolverCliente(nomcliente);
+		Boolean continuar = true;
+		while (continuar == true) {
 			
-			SolicitarInformacionCliente(cliente);
-			
-			
-			
-		}
-		else if (opcion_seleccionada ==4){
-			Inscripcion("Empleado");
-		}
-		else if (opcion_seleccionada ==5){
-			Inscripcion("Cliente");
-		}
-		else if (opcion_seleccionada ==6){
-			Integer idCarro = Integer.parseInt(input("Que carro esta buscando, ingrese el Id porfavor"));
-			System.out.println("1. Desea actualizar su estado?  \n");
-			System.out.println("2. Desea cambiarlo de sede para disponibilidad? \n");
-			int opcion_seleccionada2 = Integer.parseInt(input("Por favor seleccione una opción"));
-			if (opcion_seleccionada2 == 1) {
-				String estado = (input("Que carro esta buscando, ingrese el Id porfavor"));
-				ren.actualizarEstadoVehiculo(idCarro,estado);
-				System.out.println("Listo, el estado del vehiculo esta actualizado ");
+		
+			System.out.println("Bienvenido Administrador\n");
+			System.out.println("1. Desea consultar la informacion de los empleados de la sede? \n");
+			System.out.println("2. Desea consultar los vehiculos de la sede?  \n");
+			System.out.println("3. Desea consultar informacion de los clientes?  \n");
+			System.out.println("4. Desea agregar un nuevo empleado?  \n");
+			System.out.println("5. Desea agregar un nuevo cliente?  \n");
+			System.out.println("6. Desea actualizar el estado de un vehiculo?  \n");
+			System.out.println("7. Salir del sistema  \n");
+			int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
+			if (opcion_seleccionada == 1){
+				System.out.println("Los empleados de la sede son:  \n");
+				ren.devolverEmpleados(user);
 			}
-			else if (opcion_seleccionada2 == 2){
-				String sede = (input("A que sede desea transladar el carro?"));
-				ren.cambiarVehiculoSede(idCarro, sede);
-				System.out.println("Listo, el translado fue hecho con exito ");
+			else if (opcion_seleccionada ==2){
+				System.out.println("Los vehiculos de la sede son:  \n");
+				System.out.println(ren.devolverVehiculos(user));
 			}
-			else {
-				System.out.println("Seleccione una opcion valida");
+			else if (opcion_seleccionada ==3){
+				String nomcliente = (input("Ingrese el user del cliente"));
+				Persona cliente = ren.devolverCliente(nomcliente);
+				
+				SolicitarInformacionCliente(cliente);
+				
+				
+				
 			}
-		}
+			else if (opcion_seleccionada ==4){
+				Inscripcion("Empleado");
+			}
+			else if (opcion_seleccionada ==5){
+				Inscripcion("Cliente");
+			}
+			else if (opcion_seleccionada ==6){
+				Integer idCarro = Integer.parseInt(input("Que carro esta buscando, ingrese el Id porfavor"));
+				System.out.println("1. Desea actualizar su estado?  \n");
+				System.out.println("2. Desea cambiarlo de sede para disponibilidad? \n");
+				int opcion_seleccionada2 = Integer.parseInt(input("Por favor seleccione una opción"));
+				if (opcion_seleccionada2 == 1) {
+					String estado = (input("A que estado desea cambiar el vehiculo"));
+					ren.actualizarEstadoVehiculo(idCarro,estado);
+					System.out.println("Listo, el estado del vehiculo esta actualizado ");
+				}
+				else if (opcion_seleccionada2 == 2){
+					String sede = (input("A que sede desea transladar el carro?"));
+					ren.cambiarVehiculoSede(idCarro, sede);
+					System.out.println("Listo, el translado fue hecho con exito ");
+				}
+				else {
+					System.out.println("Seleccione una opcion valida");
+				}
+			}
+				else if (opcion_seleccionada ==7){
+					continuar = false;
+				}
+			
 		else {
 			System.out.println("Seleccione una opcion valida");
+		}
 		}
 		
 	}
 	private void Menuadministrador(String user) {
+		Boolean continuar = true;
+	
+		while (continuar == true) {
 		System.out.println("1. Desea consultar la informacion de los empleados de la sede? \n");
 		System.out.println("2. Desea consultar los vehiculos de la sede?  \n");
 		System.out.println("3. Desea consultar informacion de los clientes?  \n");
@@ -151,11 +164,12 @@ public class Principal {
 		System.out.println("8. Desea gestionar los convenios con los seguros?  \n");
 		System.out.println("9. Desea gestionar una sede?  \n");
 		System.out.println("10. Desea gestionar un proveedor?  \n");
+		System.out.println("11. Salir del sistema  \n");
 		
 		int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
 		if (opcion_seleccionada == 1){
 			System.out.println("Los empleados de la sede son:  \n");
-			System.out.println(ren.devolverEmpleados(user));
+			ren.devolverEmpleados(user);
 		}
 		else if (opcion_seleccionada ==2){
 			System.out.println("Los vehiculos de la sede son:  \n");
@@ -207,9 +221,13 @@ public class Principal {
 		else if (opcion_seleccionada == 10) {
 			
 		}
+		else if (opcion_seleccionada ==11){
+			continuar = false;
+		}
 		
 		else {
 			System.out.println("Seleccione una opcion valida");
+		}
 		}
 	}
 	private void SolicitarInformacionCliente(Persona cliente) {
